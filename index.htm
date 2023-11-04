@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+@font-face{
+	src:url("fonts/Mj flow.ttf");
+	font-family:mj;
+}
+@font-face{
+	src:url("fonts/Yekan.ttf");
+	font-family:yek;
+}
+
+#all{
+	//border:1px solid #ccc;
+	width:1000px;
+	padding:10px;
+	padding-left:30px;
+	margin:100px auto;
+	
+	font-family:mj;
+	text-align:center;
+	color:#555;
+	
+	//overflow:hidden;
+}
+#all > .sut{
+	perspective:500px;
+
+	//border:1px solid #ccc;
+	width:23.7%;
+	//height:1200px;
+	float:left;
+	margin-right:5px;
+}
+#all > .sut > .items{
+	perspective:500px;
+
+	position:relative;
+	border:10px solid #fff;
+	border-radius:3px;
+	box-shadow:0 0 5px 1px #ccc;
+	margin-bottom:5px;
+	direction:rtl;
+	cursor:zoom-in;
+}
+#all > .sut > .items > img{
+	width:100%;
+	display:block;
+}
+
+#all > .sut > .items:hover > .mask{
+	transform:rotateY(0deg);
+	opacity:1;	
+}
+
+#all > .sut > .items > .mask{
+	transition:0.5s;
+	transform:rotateY(90deg);
+	transform-origin:0% 0%;
+	opacity:0;
+	
+	
+	background:rgba(255,255,255,0.8);
+	position:absolute;
+	top:0;
+	left:0;
+	width:50%;
+	height:100%;
+}
+
+
+#all > .sut > .items > .mask > h2{
+	color:orange;
+	margin:10px;
+}
+#all > .sut > .items > .mask > p{
+	font-family:yek;
+}
+#all > .sut > .items > .mask > span{
+	color:#fff;
+	background:orange;
+	padding:7px;
+	display:block;
+	margin:10px;
+}
+#all > .sut > .items > .mask > a{
+	color:#555;
+	text-decoration:none;
+}
+
+#overlay{
+	perspective:1000px;
+	position:fixed;
+	top:0;
+	left:0;
+	background:rgba(0,0,0,0.7);
+	
+	direction:rtl;
+	text-align:center;
+}
+
+#overlay.hide{
+	width:0;
+	height:0;
+	overflow:hidden;
+}
+#overlay.show{
+	width:100%;
+	height:100%;
+
+}
+
+#pop{
+	width:500px;
+	margin:150px auto;
+}
+#pop > img{
+	width:100%;
+	border-radius:3px;
+	box-shadow:0 0 300px 1px #fff;
+}
+
+#pop > p{
+	font-family:mj;
+	background:#ddd;
+	padding:15px;
+	margin:0;
+}
+#pop.hide{
+	opacity:0;
+}
+#pop.show{
+	opacity:1;
+	animation:anim2 1s;
+}
+
+.items.hide{
+	opacity:0;
+}
+
+.items.show{
+	animation:anim2 1s;
+}
+
+@keyframes anim1{
+
+	0%{
+		opacity:0;
+		transform:scale(0);
+	}
+	30%{
+		opacity:0.8;
+		transform:scale(1.2);
+	}
+	100%{
+		opacity:1;
+		transform:scale(1);
+	}
+}
+
+@keyframes anim1{
+
+	0%{
+		opacity:0;
+		transform:scale(0);
+	}
+	30%{
+		opacity:0.8;
+		transform:scale(1.2);
+	}
+	100%{
+		opacity:1;
+		transform:scale(1);
+	}
+}
+
+@keyframes anim2{
+
+	0%{
+		opacity:0;
+		transform:translateY(-200px) rotateX(-70deg) translateY(300px);
+	}
+	100%{
+		opacity:1;
+		transform:translateY(0px) rotateX(0deg) translateY(0px);
+	}
+}
+
+@keyframes anim3{
+
+	0%{
+		opacity:0;
+		transform:rotate(720deg) scale(0);
+	}
+	100%{
+		opacity:1;
+		transform:rotate(0deg) scale(1);
+	}
+}
+
+
+</style>
+
+</head>
+<body>
+
+<div id="all">
+	<div class="sut"> 
+	
+	<!--
+		<div class="items" onclick="popup(2)">
+			<img src="img/2.jpg">
+			<div class="mask">
+				<h2> عنوان </h2>
+				<p> توضیحات </p>
+				<span> 25000 ریال </span>
+				<a href="#"> ادامه </a>
+			</div>
+		</div>
+		-->
+		
+		
+	</div>
+	<div class="sut">  </div>
+	<div class="sut">  </div>
+	<div class="sut">  </div>	
+</div>
+
+<div id="overlay" class="hide" onclick="davend()">
+	
+	<div id="pop" class="hide"> 
+		<img id="big_img" src="img/2.jpg">
+		<p> توضیحات . . .  </p>		
+	</div>
+
+</div>
+
+<script>
+
+function popup(i){
+	overlay.className = "show";
+	pop.className = "show";	
+	big_img.src = "img/" + i + ".jpg";
+}
+
+
+function davend(){
+	overlay.className = "hide";
+	pop.className = "hide";	
+}
+
+function deres_haken(image,title,des,price){
+
+	it = document.createElement("div");
+	it.className = "items hide";
+	
+		im = document.createElement("img");
+		im.src = "img/" + image;
+		
+		mas = document.createElement("div");
+		mas.className = "mask";	
+		
+			h = document.createElement("h2");	
+			h.innerHTML = title;
+			
+			par = document.createElement("p");	
+			par.innerHTML = des;	
+			
+			sp = document.createElement("span");	
+			sp.innerHTML = price;	
+			
+			anc = document.createElement("a");	
+			anc.innerHTML = "ادامه";	
+			anc.href = "#";
+	
+		mas.appendChild(h);
+		mas.appendChild(par);		
+		mas.appendChild(sp);		
+		mas.appendChild(anc);	
+		
+	it.appendChild(im);
+	it.appendChild(mas);
+
+	return it;	
+}
+
+cols = document.querySelectorAll("#all > .sut");
+
+
+
+function demas(i){
+	
+	p1 = (i%16+1) + ".jpg";
+	p2 = "آیتم " + (i+1);
+	p3 =  "توضیحات " + (i+1);
+	p4 = Math.round(Math.random()*10000) + "ریال";
+	
+	el = deres_haken(p1,p2,p3,p4);
+	
+	el.className = "items show";
+	
+	el.onclick = function(){
+		popup(i%16+1);
+	}
+	
+	cols[i%4].appendChild(el);
+	
+}
+
+for(i = 0;i < 30;i++){
+	setTimeout("demas("+i+")",300*i);
+}
+
+
+
+
+</script>
+
+</body>
+</html>
