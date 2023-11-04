@@ -45,8 +45,8 @@ function create_gallery(image, title, des, price) {
 
 cols = document.querySelectorAll("#all > .sut");
 
-function demas(i) {
-  p1 = (i % 16) + 1 + ".jpg";
+function insert_pic(i) {
+  p1 = (i % 17) + 1 + ".jpg";
   p2 = "آیتم " + (i + 1);
   p3 = "توضیحات " + (i + 1);
   p4 = Math.round(Math.random() * 10000) + "ریال";
@@ -56,12 +56,13 @@ function demas(i) {
   el.className = "items show";
 
   el.onclick = function () {
-    popup((i % 16) + 1);
+    popup((i % 17) + 1);
   };
 
   cols[i % 4].appendChild(el);
+  console.log(cols);
 }
 
-for (i = 0; i < 30; i++) {
-  setTimeout("demas(" + i + ")", 300 * i);
+for (i = 0; i < 32; i++) {
+  setTimeout("insert_pic(" + i + ")", 300 * i);
 }
